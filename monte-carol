@@ -1,0 +1,108 @@
+TITLE: Monte Carlo Simulation 3 factor CFA
+MONTECARLO: NAMES ARE A1-A4 B1-B8 C1-C3;
+NOBSERVATIONS = 100;
+NREPS = 10000;
+SEED = 53487;
+NGROUPS = 1;
+
+MODEL POPULATION: ! specifies sample size
+
+F1 BY A1*.81; ! sets factor loadings
+F1 BY A2*.90;
+F1 BY A3*.93;
+F1 BY A4*.89;
+F2 BY B1*.857;
+F2 BY B2*.873;
+F2 BY B3*.823;
+F2 BY B4*.879;
+F2 BY B5*.783;
+F2 BY B6*.794;
+F2 BY B7*.735;
+F2 BY B8*.792;
+F3 BY C1*.858;
+F3 BY C2*.920;
+F3 BY C3*.846;
+
+F1@1.0; ! specifies factor variance
+A1*.344; ! specifies residual variance of the indicators
+A2*.190;
+A3*.135;
+A4*.208;
+F2@1.0;
+B1*.266;
+B2*.238;
+B3*.323;
+B4*.227;
+B5*.387;
+B6*.370;
+B7*.460;
+B8*.373;
+F3@1.0;
+C1*.264;
+C2*.154;
+C3*.284;
+
+F1 with F2*-.33; ! sets correlation
+[A1-A4@0]; ! Sets indicator intercepts to 0
+[B1-B8@0];
+[C1-C3@0];
+F1 with F3*.46;
+[A1-A4@0];
+[B1-B8@0];
+[C1-C3@0];
+F2 with F3*-.42;
+[A1-A4@0];
+[B1-B8@0];
+[C1-C3@0];
+
+MODEL: ! Specifies population parameters
+
+F1 BY A1*.81; ! sets factor loadings
+F1 BY A2*.90;
+F1 BY A3*.93;
+F1 BY A4*.89;
+F2 BY B1*.857;
+F2 BY B2*.873;
+F2 BY B3*.823;
+F2 BY B4*.879;
+F2 BY B5*.783;
+F2 BY B6*.794;
+F2 BY B7*.735;
+F2 BY B8*.792;
+F3 BY C1*.858;
+F3 BY C2*.920;
+F3 BY C3*.846;
+
+F1@1.0; ! specifies factor variance
+A1*.344; ! specifies residual variance of the indicators
+A2*.190;
+A3*.135;
+A4*.208;
+F2@1.0;
+B1*.266;
+B2*.238;
+B3*.323;
+B4*.227;
+B5*.387;
+B6*.370;
+B7*.460;
+B8*.373;
+F3@1.0;
+C1*.264;
+C2*.154;
+C3*.284;
+
+F1 with F2*-.33; ! sets correlation
+[A1-A4@0]; ! Sets indicator intercepts to 0
+[B1-B8@0];
+[C1-C3@0];
+F1 with F3*.46;
+[A1-A4@0];
+[B1-B8@0];
+[C1-C3@0];
+F2 with F3*-.42;
+[A1-A4@0];
+[B1-B8@0];
+[C1-C3@0];
+
+OUTPUT: TECH9;
