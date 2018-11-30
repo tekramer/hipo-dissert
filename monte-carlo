@@ -1,5 +1,5 @@
-TITLE: Monte Carlo Simulation 3 factor CFA
-MONTECARLO: NAMES ARE A1-A4 B1-B8 C1-C3;
+TITLE: Monte Carlo Simulation 4 factor CFA
+MONTECARLO: NAMES ARE HP1 DJ1-DJ4 TI1-TI3 AC1-AC4 NC1-NC4;
 NOBSERVATIONS = 100;
 NREPS = 10000;
 SEED = 53487;
@@ -7,53 +7,68 @@ NGROUPS = 1;
 
 MODEL POPULATION: ! specifies sample size
 
-F1 BY A1*.81; ! sets factor loadings
-F1 BY A2*.90;
-F1 BY A3*.93;
-F1 BY A4*.89;
-F2 BY B1*.857;
-F2 BY B2*.873;
-F2 BY B3*.823;
-F2 BY B4*.879;
-F2 BY B5*.783;
-F2 BY B6*.794;
-F2 BY B7*.735;
-F2 BY B8*.792;
-F3 BY C1*.858;
-F3 BY C2*.920;
-F3 BY C3*.846;
+HP BY HP1*.??; ! sets factor loadings
+DJ BY DJ1*.81;
+DJ BY DJ2*.90;
+DJ BY DJ3*.93;
+DJ BY DJ4*.89;
+TI BY TI1*.858;
+TI BY TI2*.920;
+TI BY TI3*.846; 
+TI BY AC1*.857;
+OC BY AC2*.873;
+OC BY AC3*.823;
+OC BY AC4*.879;
+OC BY NC1*.783;
+OC BY NC2*.794;
+OC BY NC3*.735;
+OC BY NC4*.792;
 
-F1@1.0; ! specifies factor variance
-A1*.344; ! specifies residual variance of the indicators
-A2*.190;
-A3*.135;
-A4*.208;
-F2@1.0;
-B1*.266;
-B2*.238;
-B3*.323;
-B4*.227;
-B5*.387;
-B6*.370;
-B7*.460;
-B8*.373;
-F3@1.0;
-C1*.264;
-C2*.154;
-C3*.284;
+HP@1.0; ! specifies factor variance
+HP1*.???; ! specifies residual variance of the indicators
+DJ@1.0;
+DJ1*.344;
+DJ2*.190;
+DJ3*.135;
+DJ4*.208;
+TI@1.0;
+TI1*.264;
+TI2*.154;
+TI3*.284; 
+OC@1.0;
+AC1*.266;
+AC2*.238;
+AC3*.323;
+AC4*.227;
+NC1*.387;
+NC2*.370;
+NC3*.460;
+NC4*.373;
 
-F1 with F2*-.33; ! sets correlation
-[A1-A4@0]; ! Sets indicator intercepts to 0
-[B1-B8@0];
-[C1-C3@0];
-F1 with F3*.46;
-[A1-A4@0];
-[B1-B8@0];
-[C1-C3@0];
-F2 with F3*-.42;
-[A1-A4@0];
-[B1-B8@0];
-[C1-C3@0];
+HP with DJ*.??; ! sets correlation
+[HP1@0]; ! Sets indicator intercepts to 0
+[DJ1-DJ4@0];
+[TI1-TI3@0]; 
+[AC1-AC4@0];
+[NC1-NC4];
+DJ with TI*-.33;
+[HP1@0];
+[DJ1-DJ4@0];
+[TI1-TI3@0]; 
+[AC1-AC4@0];
+[NC1-NC4];
+DJ with OC*.46;
+[HP1@0]; ! Sets indicator intercepts to 0
+[DJ1-DJ4@0];
+[TI1-TI3@0]; 
+[AC1-AC4@0];
+[NC1-NC4];
+TI with OC*-.42;
+[HP1@0]; ! Sets indicator intercepts to 0
+[DJ1-DJ4@0];
+[TI1-TI3@0]; 
+[AC1-AC4@0];
+[NC1-NC4];
 
 MODEL: ! Specifies population parameters
 
